@@ -1,8 +1,18 @@
 import React from 'react'
+import Helmet from '../components/Helmet'
+import HeroSlider from '../components/HeroSlider'
+import heroSliderData from '../assets/fake-data/hero-slider';
+
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <Helmet title='Home'>
+      {/* hero slider */}
+      <HeroSlider
+        data={heroSliderData}
+      />
+      {/* end hero slider */}
+    </Helmet>
   )
 }
 
