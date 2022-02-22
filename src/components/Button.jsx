@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const Button = (props) => {
   const bg = props.backgrounColor ? "bg-" + props.backgrounolor : "bg-main";
 
-  const size = props.size ? "bg-" + props.size : "";
+  const size = props.size ? "btn-" + props.size : "";
 
   const animate = props.animate ? "btn-animate" : "";
 
