@@ -31,7 +31,7 @@ const ProductCard = props => {
                     icon="bx bx-cart"
                     animate={true}
                 >
-                    chọn mua
+                    click me
                 </Button>
             </div>
         </div>

@@ -1,15 +1,16 @@
-import React from "react";
+import React , { useState } from "react";
 import Helmet from "../components/Helmet";
 import Grid from "../components/Grid";
 import ProductCard from "../components/ProductCard";
 import CheckBox from "../components/CheckBox";
+import Button from "../components/Button";
+import InfinityList from "../components/InfinityList";
 
 import productData from "../assets/fake-data/products";
 import category from "../assets/fake-data/category";
 import colors from "../assets/fake-data/product-color";
 import size from "../assets/fake-data/product-size";
-import Button from "../components/Button";
-import { useState } from "react";
+
 
 const Catalog = () => {
   const inifilter = {
@@ -24,24 +25,47 @@ const Catalog = () => {
 
   const [filter, setFilter] = useState(inifilter);
 
-  const filterSelect = (type , checked , item) => {
-    if (checked) {
-      switch(type){
-        case "CATEGORY":
-          setFilter({...filter , category: [...filter.category , item.categorySlug]})
-          
-        case "COLOR":
-          setFilter({...filter , color: [...filter.color , item.color]})
-        
-          case "SIZE":
-          setFilter({...filter , size: [...filter.size , item.size]})
+  // const filterSelect = (type, checked, item) => {
+  //   if (checked) {
+  //     switch (type) {
+  //       case "CATEGORY":
+  //         setFilter({
+  //           ...filter,
+  //           category: [...filter.category, item.categorySlug],
+  //         });
+  //         break
 
-          default:
-      }
-    }else{
-      
-    }
-  }
+  //       case "COLOR":
+  //         setFilter({ ...filter, color: [...filter.color, item.color] });
+  //         break
+
+  //       case "SIZE":
+  //         setFilter({ ...filter, size: [...filter.size, item.size] });
+  //         break
+
+  //       default:
+  //     }
+  //   } else {
+  //     switch (type) {
+  //       case "CATEGORY":
+  //         const newCategory = filter.category.filter(
+  //           (e) => e !== item.categorySlug
+  //         );
+  //         setFilter({ ...filter, category: newCategory });
+  //         break
+
+  //       case "COLOR":
+  //         const newColor = filter.color.filter((e) => e !== item.color);
+  //         setFilter({ ...filter, color: newColor });
+  //         break
+  //       case "SIZE":
+  //         const newSize = filter.size.filter((e) => e !== item.size);
+  //         setFilter({ ...filter, size: newSize });
+  //         break
+  //       default:
+  //     }
+  //   }
+  // };
 
   return (
     <Helmet title="Catalog">
@@ -57,7 +81,12 @@ const Catalog = () => {
                   key={index}
                   className="catalog__filter__widget__content__item"
                 >
-                  <CheckBox label={item.display} />
+                  <CheckBox
+                    label={item.display}
+                    // onChange={(input) =>
+                    //   filterSelect("CATEGORY", input.checked, item)
+                    // }
+                  />
                 </div>
               ))}
             </div>
@@ -71,7 +100,12 @@ const Catalog = () => {
                   key={index}
                   className="catalog__filter__widget__content__item"
                 >
-                  <CheckBox label={item.display} />
+                  <CheckBox
+                    label={item.display}
+                    // onChange={(input) =>
+                    //   filterSelect("COLOR", input.checked, item)
+                    // }
+                  />
                 </div>
               ))}
             </div>
@@ -85,7 +119,12 @@ const Catalog = () => {
                   key={index}
                   className="catalog__filter__widget__content__item"
                 >
-                  <CheckBox label={item.display} />
+                  <CheckBox
+                    label={item.display}
+                    // onChange={(input) =>
+                    //   filterSelect("SIZE", input.checked, item)
+                    // }
+                  />
                 </div>
               ))}
             </div>
@@ -97,18 +136,9 @@ const Catalog = () => {
           </div>
         </div>
         <div className="catalog__content">
-          <Grid col={3} mdCol={2} smCol={1} grid={20}>
-            {products.map((item, index) => (
-              <ProductCard
-                key={index}
-                img01={item.image01}
-                img02={item.image02}
-                name={item.title}
-                price={Number(item.price)}
-                slug={item.slug}
-              />
-            ))}
-          </Grid>
+          <InfinityList 
+            data={products}
+          />
         </div>
       </div>
     </Helmet>
